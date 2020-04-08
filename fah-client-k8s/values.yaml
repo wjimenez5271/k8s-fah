@@ -1,4 +1,4 @@
-GPU: false
+gpu: false
 requests:
   cpu: 100m
   memory: 512Mi

@@ -3,7 +3,7 @@ labels:
   io.rancher.app_min_version: 7.3.8
 categories:
 questions:
-  - variable: GPU.enabled
+  - variable: gpu
     default: false
     description: "Run using GPUs (if available)"
     type: boolean

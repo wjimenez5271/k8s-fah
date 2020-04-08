@@ -42,14 +42,14 @@ spec:
             - "--run-as"
             - "1234"
             - "--pid-file=/var/lib/fahclient/fahclient.pid"
-            {{- if .Values.GPU }}
+            {{- if .Values.gpu }}
             - "--gpu=true"
             {{- else }}
             - "--gpu=false"
             {{- end}}
 
           resources:
-            {{- if .Values.GPU }}
+            {{- if .Values.gpu }}
             limits:
               nvidia.com/gpu: "1" # How many gpu's you want to donate per ndoe
               cpu: {{ .Values.limits.cpu | quote }} # How much CPU you wish to donate per node
@@ -126,7 +126,7 @@ data:
       <passkey value=""/>       <!-- 32 hexadecimal characters if provided -->
 
       <power value="full"/>     <!-- Throttling this at K8s level -->
-      {{- if .Values.GPU }}
+      {{- if .Values.gpu }}
       <gpu value="true"/>      <!-- If true, attempt to autoconfigure GPUs -->
       {{- else }}               <!-- If true, attempt to autoconfigure GPUs -->
       <gpu value="false"/>
