@@ -1,5 +1,5 @@
 apiVersion: v2
-name: Folding@home K8s Client
+name: folding-at-home
 description: A helm chart for deploying Folding @ Home workers 
 
 # A chart can be either an 'application' or a 'library' chart.
