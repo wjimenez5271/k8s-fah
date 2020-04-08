@@ -1,11 +1,3 @@
-# apiVersion: scheduling.k8s.io/v1
-# kind: PriorityClass
-# metadata:
-#   name: low-priority-class
-# value: 10
-# globalDefault: false
-# description: "This priority class should be used for low priority fah-worker pods only."
-# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: fah-worker
-  replicas: {{ .Values.replicas | quote }}  # Set number of replicas to run - one replica per node
+  replicas: {{ .Values.replicas  }}  # Set number of replicas to run - one replica per node
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -50,28 +42,28 @@ spec:
             - "--run-as"
             - "1234"
             - "--pid-file=/var/lib/fahclient/fahclient.pid"
-            {{- if .Values.GPU.enabled }}
+            {{- if .Values.GPU }}
             - "--gpu=true"
             {{- else }}
             - "--gpu=false"
             {{- end}}
 
           resources:
-            {{- if .Values.GPU.enabled }}
+            {{- if .Values.GPU }}
             limits:
               nvidia.com/gpu: "1" # How many gpu's you want to donate per ndoe
-              cpu: {{ .Values.limits.CPU | quote }} # How much CPU you wish to donate per node
+              cpu: {{ .Values.limits.cpu | quote }} # How much CPU you wish to donate per node
               memory: {{ .Values.limits.memory | quote }} 
             requests:
               nvidia.com/gpu: "1"
-              cpu: {{ .Values.requests.CPU | quote }} 
+              cpu: {{ .Values.requests.cpu | quote }} 
               memory: {{ .Values.limits.memory | quote }}       
             {{- else }}
             limits:
-              cpu: {{ .Values.limits.CPU | quote }} # How much CPU you wish to donate per node
+              cpu: {{ .Values.limits.cpu | quote }} # How much CPU you wish to donate per node
               memory: {{ .Values.limits.memory | quote }} 
             requests:
-              cpu: {{ .Values.requests.CPU | quote }} 
+              cpu: {{ .Values.requests.cpu | quote }} 
               memory: {{ .Values.limits.memory | quote }} 
             {{- end}}
 
@@ -134,7 +126,7 @@ data:
       <passkey value=""/>       <!-- 32 hexadecimal characters if provided -->
 
       <power value="full"/>     <!-- Throttling this at K8s level -->
-      {{- if .Values.GPU.enabled }}
+      {{- if .Values.GPU }}
       <gpu value="true"/>      <!-- If true, attempt to autoconfigure GPUs -->
       {{- else }}               <!-- If true, attempt to autoconfigure GPUs -->
       <gpu value="false"/>

@@ -9,6 +9,12 @@ questions:
     type: boolean
     required: true
     label: GPU Enbaled
+  - variable: replicas
+    default: 2
+    description: "Number of workers to deploy"
+    type: int
+    label: replicas
+    group: "Resource Allocations"
   - variable: requests.cpu
     default: "100m"
     description: "Amount of CPU to allocate per pod"
@@ -21,7 +27,7 @@ questions:
     type: string
     label: Memory requests
     group: "Resource Allocations"
-  - variable: requests.cpu
+  - variable: limits.cpu
     default: "1000m"
     description: "Maximum amount of CPU to allocate per pod"
     type: string

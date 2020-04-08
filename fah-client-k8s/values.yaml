@@ -2,7 +2,8 @@ GPU: false
 requests:
   cpu: 100m
   memory: 512Mi
-
-reservations:
+limits:
   cpu: 1000m
   memory: 512Mi
+
+replicas: 2
