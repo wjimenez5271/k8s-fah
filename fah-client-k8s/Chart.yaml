@@ -1,6 +1,6 @@
-apiVersion: v2
+apiVersion: v1
 name: folding-at-home
-description: A helm chart for deploying Folding @ Home workers 
+description: A helm chart for deploying Folding @ Home workers
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -20,3 +20,14 @@ version: 0.1.0
 # incremented each time you make changes to the application.
 appVersion: 1.16.0
 icon: file://icon.svg
+
+maintainers:
+- name: wjimenez5271
+  email: william@rancher.com
+
+sources:
+- https://github.com/rancher/charts
+- https://github.com/richstokes/k8s-fah
+
+home: https://foldingathome.org/
+
